@@ -195,6 +195,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       isLoading: isLoading,
                       onPressed: _handleLogin,
                     ),
+                    const SizedBox(height: 10),
+                    TextButton.icon(
+                      onPressed: isLoading
+                          ? null
+                          : () => context.push(AppRoutes.activateAccount),
+                      icon: const Icon(Icons.person_add_alt_1_outlined),
+                      label: const Text('Activate your account'),
+                    ),
                     const SizedBox(height: 18),
                     Text(
                       'Use your university email provided by the university.',

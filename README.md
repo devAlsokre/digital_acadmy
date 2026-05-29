@@ -24,9 +24,10 @@ source files.
 PowerShell:
 
 ```powershell
-flutter run -d <device-id> `
-  --dart-define=SUPABASE_URL=http://YOUR_LOCAL_SUPABASE_IP:54321 `
-  --dart-define=SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+flutter run `
+  --dart-define=SUPABASE_URL=http://192.168.1.106:8000 `
+  --dart-define=SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY `
+  --dart-define=ACTIVATION_API_URL=http://192.168.1.106:3000/api/student/activate-account
 ```
 
 Check available devices:
@@ -34,6 +35,27 @@ Check available devices:
 ```powershell
 flutter devices
 ```
+
+## Student Account Activation
+
+Students who have been entered by the university but are not yet linked to
+Supabase Auth can activate their account from the login screen. The mobile app
+sends the university number, university email, and selected password to the
+configured activation endpoint.
+
+Set the activation endpoint at run time:
+
+```powershell
+--dart-define=ACTIVATION_API_URL=http://192.168.1.106:3000/api/student/activate-account
+```
+
+On an Android phone, do not configure the endpoint using `127.0.0.1`.
+Use the LAN address of the computer running the Admin Dashboard server, such as
+`http://192.168.1.101:3000/api/student/activate-account`.
+
+The endpoint is responsible for securely creating the Supabase Auth account and
+linking `students.auth_user_id`. The Flutter app does not contain a
+`service_role` key and does not create Auth users directly.
 
 ## Offline Local Background Notifications
 

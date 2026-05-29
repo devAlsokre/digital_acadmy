@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../features/account_activation/presentation/screens/activate_account_screen.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
 import '../features/splash/presentation/screens/splash_screen.dart';
 import '../features/student_dashboard/presentation/screens/student_announcements_screen.dart';
@@ -24,6 +25,10 @@ final GoRouter appRouter = GoRouter(
         final Object? extra = state.extra;
         return LoginScreen(message: extra is String ? extra : null);
       },
+    ),
+    GoRoute(
+      path: AppRoutes.activateAccount,
+      builder: (context, state) => const ActivateAccountScreen(),
     ),
     GoRoute(
       path: AppRoutes.studentHome,
@@ -68,6 +73,7 @@ class AppRoutes {
 
   static const String splash = '/splash';
   static const String login = '/login';
+  static const String activateAccount = '/activate-account';
   static const String studentHome = '/student-home';
   static const String studentCourses = '/student-courses';
   static const String studentSchedule = '/student-schedule';
