@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../../app/router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/errors/app_exception.dart';
+import '../../../../core/widgets/app_bar.dart';
 import '../../../../core/widgets/loading_view.dart';
 import '../../../auth/application/auth_controller.dart';
 import '../../../student_dashboard/application/student_dashboard_controller.dart';
@@ -110,16 +111,14 @@ class _StudentHomeScreenState extends ConsumerState<StudentHomeScreen> {
     final bool isLoggingOut = ref.watch(authControllerProvider).isLoading;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Digital Academy'),
-        actions: <Widget>[
-          IconButton(
-            tooltip: 'Logout',
-            onPressed: isLoggingOut ? null : _handleLogout,
-            icon: const Icon(Icons.logout_rounded),
-          ),
-        ],
+      appBar: WidgetAppBar(
+        title: 'UDS',
+        unreadNotificationsCount: 20,
+        onNotificationTap: () {
+          // افتح صفحة الإشعارات لاحقًا
+        },
       ),
+      drawer: Drawer(),
       body: RefreshIndicator(
         onRefresh: () => _loadHomeData(force: true),
         child: studentState.when(

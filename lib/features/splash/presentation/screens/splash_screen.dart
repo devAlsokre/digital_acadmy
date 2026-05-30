@@ -9,6 +9,7 @@ import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/errors/app_exception.dart';
+import '../../../../core/widgets/image_logo.dart';
 import '../../../auth/application/auth_controller.dart';
 import '../../../auth/data/auth_repository.dart';
 import '../../../auth/domain/app_user_profile.dart';
@@ -152,7 +153,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _SplashLogo(),
+              const _SplashLogo(),
               SizedBox(height: 26),
               Text(
                 AppStrings.appName,
@@ -183,27 +184,10 @@ class _SplashLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(28),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            color: Color(0x140F172A),
-            blurRadius: 24,
-            offset: Offset(0, 12),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(22),
-        child: Image.asset(
-          AppAssets.logo,
-          width: 110,
-          height: 110,
-          fit: BoxFit.contain,
-        ),
-      ),
+    return const AcademyLogo(
+      variant: AcademyLogoVariant.full,
+      cardSize: 150,
+      logoWidth: 118,
     );
   }
 }
